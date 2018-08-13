@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_184341) do
     t.integer "marks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "title"
+    t.string "title"
     t.integer "total"
   end
 
