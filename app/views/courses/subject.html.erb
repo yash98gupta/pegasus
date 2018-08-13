@@ -1,0 +1,7 @@
+<%=form_for @subject, :url => {:controller => "courses" , :action => "subject_create"} do |s| %>
+Subject: <%=s.text_field :subject_name%>
+standard: <%=s.text_field :standard%>
+Fees: <%=s.number_field :fees%>
+<br>
+<%=s.submit%>
+<%end%>

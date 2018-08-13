@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %></h1>
+    <p>
+      Reciept details are below :-
+    </p>
+    <h3>Subject Name : &nbsp<%=Course.find_by(id: Receipt.where(student_id:@user.id).last.subject_id).subject_name%></h3>
+    <h3>End Date : &nbsp<%=Receipt.where(student_id:@user.id).last.end_date%></h3>
+    <h3>Fees : &nbsp<%=Receipt.where(student_id:@user.id).last.fees%></h3>
+    <%if Receipt.where(student_id:@user.id).last.emp_name != 'self'%>
+      <h3>Employee Name : &nbsp<%=Receipt.where(student_id:@user.id).last.emp_name%></h3>
+    <%end%>
+  </body>
+</html>

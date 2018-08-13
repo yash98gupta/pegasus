@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %></h1>
+    <p>
+      This mail is regarding reminder of fees of <b><%=Receipt.where(student_id:@user.id).last.fees%></b> Rs/-
+    </p>
+    Your Course of &nbsp<b><%=Course.find_by(id: Receipt.where(student_id:@user.id).last.subject_id).subject_name%></b> expire on <b><%=Receipt.where(student_id:@user.id).last.end_date%></b>.
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<%@subject_receipt.each do |s|%>
+<br>
+<b>Subject Name:&nbsp<%=Course.find_by(id: s.subject_id).subject_name%></b>
+<br>
+<b>Renewed On:&nbsp<%=s.created_at.strftime("%d-%m-%Y")%></b>
+<br>
+<b>End Date:&nbsp<%=s.end_date%></b>
+<br>
+<b>Fees:&nbsp<%=s.fees%></b>
+<br>
+<b>Employee Name: &nbsp<%=s.emp_name%></b>
+<br>
+<br>
+<%end%>

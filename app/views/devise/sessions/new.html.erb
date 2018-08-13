@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" style="overflow-y: hidden;">
+  <head>
+    <meta charset="utf-8">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <title></title>
+    <style>
+    .log_in{
+      width: 52%;
+    background-color: #F0872F;
+    border-radius: 2%;
+    left: 4vw;
+    position: absolute;
+    padding: 25px;
+    background-color: #F0872F;
+        top: 30vh
+    }
+    .pegasus_img
+    {
+      position: absolute;
+      left: 28%;
+top: 35vh;
+
+    }
+    </style>
+  </head>
+  <body style="background-color: #B0D2F0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixednavbar">
+      <img style="height: 30px;margin-right: 6px;"src="/assets/pegasus-ogo.png">
+      <a class="navbar-brand" href="#">Pegasus</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/#team-pegasu">Tutor</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:95px;">Courses</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/courses/class8">class 8</a>
+              <a class="dropdown-item" href="/courses/class9">class 9</a>
+              <a class="dropdown-item" href="/courses/class10">class 10</a>
+              <a class="dropdown-item" href="/courses/class11">class 11</a>
+              <a class="dropdown-item" href="/courses/class12">class 12</a>
+            </div>
+          </li>
+
+          <li class="nav-item active">
+              <a class="nav-link" href="/#contact_us">Contact</a>
+          </li>
+          <% if user_signed_in?%>
+          <%if !current_user.admin %>
+            <li class="nav-item active">
+              <%=link_to "Dashboard",dashboard_show_path,class: "nav-link"%>
+            </li>
+          <%else%>
+            <li class="nav-item active">
+              <%=link_to "Dashboard",admin_dashboard_path,class: "nav-link"%>
+            </li>
+          <%end%>
+          <li class="nav-item active" style="position: absolute;right: 10%; background:linear-gradient(to top, #ddd6f3, #faaca8);border-radius:50%;">
+            <a style=" width: 113px" class="nav-link" href="#">Refer & Earn</a>
+          </li>
+            <li class="nav-item active" style="position: absolute;margin-top: 1px;right: 3%;">
+            <%=link_to "Logout",destroy_user_session_path,method:"delete",class: "nav-link disabled"%>
+            </li>
+          <% else %>
+          <li class="nav-item active" style="position:absolute;right: 16%;background:linear-gradient(to top, #ddd6f3, #faaca8);border-radius:50%;">
+            <a style=" width: 113px" class="nav-link" href="#">Refer & Earn</a>
+          </li>
+            <li class="nav-item active" style="position:absolute;right: 9%" >
+              <%=link_to "Login",user_session_path,class:"nav-link disabled"%>
+            </li>
+            <li class="nav-item active" style="position:absolute;right: 3%">
+              <%=link_to "Join",new_user_registration_path,class: "nav-link disabled"%>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="log_in">
+        <h2>Log in</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <br>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+      <br>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+      <br>
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+      <br>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+  <div class="pegasus_img">
+    <img src="/assets/pegasus-ogo.png">
+  </div>
+
+    <script>
+    jQuery(function ($) {
+      $(window).on('popstate', function() {
+           location.reload(true);
+        });
+      });
+
+    </script>
+  </body>
+</html>

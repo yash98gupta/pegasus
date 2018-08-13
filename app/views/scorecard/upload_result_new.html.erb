@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <title></title>
+  </head>
+  <body>
+
+    <%=form_for @score_new, :url => {:controller => "scorecard" , :action => "upload_result_create", :student_id => @student_id , :course_id => @course_id} do |s| %>
+    Title: <%=s.text_field :title%>
+    Marks: <%=s.number_field :marks%>
+    <%=s.submit%>
+    <%end%>
+
+  </body>
+</html>

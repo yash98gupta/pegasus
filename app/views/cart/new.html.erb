@@ -1,0 +1,189 @@
+<style>
+.select
+{
+  background: black
+}
+</style>
+
+<div style="height:63vh;">
+  <%if @enrolled_subject.length == @subjects.length%>
+  <h3>You are enrolled in all courses of this class</h3>
+  <%else%>
+  <%if @subjects.length==0%>
+          <h3>No Courses Available Currently</h3>
+  <%else%>
+          <%if @cart_id != nil%>
+            <ul style="list-style:none; display:flex;margin-top:20px;" class="subject_class">
+                <li style="display:inline-block; margin-right:10px; width:80px; text-align:center;background: linear-gradient(to right, #ff8008, #ffc837);"><%=@subject_renew.subject_name%></li>
+            </ul>
+          <%else%>
+            <ul style="list-style:none; display:flex;margin-top:20px;" class="subject_class">
+              <%@subjects.each do |s|%>
+                <%if Cart.find_by(student_id: @student_id,course_id: s.id) !=nil%>
+                    <%next%>
+                <%else%>
+                    <li style="display:inline-block; margin-right:10px; width:80px; text-align:center;background:lightgrey;" id="<%=s.id%>" onclick='select_subject(<%=s.id%>,this.id,<%=@subject_id%>,<%=@subject_fees%>,<%=@user_admin%>)' ondblclick="myFunctionagain(this.id)"><%=s.subject_name%></li>
+                <%end%>
+          <%end%>
+          </ul>
+  <%end%>
+<br>
+<br>
+<div style="margin-left:40px;">
+<%=form_for @cart_add, :url => {:controller => "cart" , :action => "create",:student_id => @student_id , :cart_id => @cart_id} do |s| %>
+<%if @course_id != nil%>
+<%= s.hidden_field :course_id,:class => 'subject_id', :value => @subject_renew , :required => true %>
+<%else%>
+<%= s.hidden_field :course_id,:class => 'subject_id', :value => '' , :required => true%>
+<%end%>
+<%if current_user.admin == true%>
+End date: <%=s.date_field :end_date , :required => true%>
+<%else%>
+End date: <input type="date" id="myDate" value="">
+<%end%>
+<%if current_user.admin == true%>
+&nbsp &nbsp &nbsp &nbsp Fees: <%=s.number_field :fees%>
+<%else%>
+&nbsp &nbsp &nbsp &nbsp Fees: <span id="myspan">0</span>
+<%end%>
+<br>
+<br>
+<br>
+<%if current_user.admin == true%>
+Employee Name: <%=s.text_field :emp_name%>
+<br>
+<br>
+<br>
+<%=s.submit "submit"%>
+<%end%>
+<%end%>
+</div>
+<%if current_user.admin != true%>
+<button id="rzp-button1" style="margin-left:40px;">Pay</button>
+<%end%>
+<%end%>
+<%end%>
+</div>
+
+<script>
+function select_subject(id,answer,subject_id,subject_fees,user_admin)
+{
+  console.log(id);
+  console.log(subject_id);
+  var i;
+  for(i=0;i<subject_id.length;i++)
+  {
+    if(document.getElementById(subject_id[i])!=null)
+    {
+      if(subject_id[i]===id)
+      {
+        document.getElementById(answer).style.background = "linear-gradient(to right, #ff8008, #ffc837)";
+        if(user_admin == false)
+        {
+        document.getElementById("myspan").textContent= subject_fees[i] + " per month";
+        window.fee=subject_fees[i];
+
+        console.log('---------------------');
+        console.log(subject_fees[i])
+        }
+      }
+      else {
+        document.getElementById(subject_id[i]).style.background = "lightgrey";
+      }
+    }
+    else {
+      {
+        continue;
+      }
+    }
+  }
+
+  console.log('hello');
+  console.log(id);
+  window.subject=id;
+  u=document.getElementsByClassName('subject_id');
+  u[0].value=id
+
+
+  console.log("----subject_fees array----");
+  console.log(subject_fees);
+
+
+}
+
+
+function myFunctionagain(answer) {
+  console.log('hey');
+    document.getElementById(answer).style.background = "lightgrey";
+}
+
+</script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+document.getElementById('rzp-button1').onclick = function(e){
+  options=razorpay();
+  var rzp1 = new Razorpay(options);
+  console.log(options);
+
+  // console.log("duration is :-");
+  // console.log(duration);
+  // console.log(window.fee);
+  //   console.log("hello000000000000");
+    rzp1.open();
+    e.preventDefault();
+}
+
+function razorpay()
+{
+  window.date=document.getElementById("myDate").value
+  var e=new Date(document.getElementById("myDate").value);
+  var s=Date.now();
+  console.log("e ",e);
+  if(e-s>=0)
+  {
+    var duration=(1.157*(e-s))/100000000;
+    duration= duration/30;
+    if(duration<=1)
+    {
+      duration=1;
+    }
+    console.log("duration calculated ",duration);
+  }
+  else {
+    alert("please check the date filled");
+    duration=1;
+    if (typeof window.fee === 'undefined')
+    {
+      window.fee=1000;
+    }
+    window.location.reload();
+  }
+
+  var options = {
+      "key": "rzp_test_9dNXMHElNIZUh4",
+      "amount": window.fee*Math.round(duration)*100, // 2000 paise = INR 20
+      "name": "Merchant Name",
+      "description": "Purchase Description",
+
+      "handler": function (response){
+          // alert(response.razorpay_payment_id);
+        $.ajax({
+            url:'/razorpay/pay',
+            type:'POST',
+            data: { "amount":options.amount,
+                    "payment_id":response.razorpay_payment_id,
+                    "subject_id":window.subject,
+                    "end_date":window.date
+                  },
+          });
+
+            console.log("yoyoyoy");
+      },
+      "theme": {
+          "color": "#F37254"
+      }
+  };
+  return options
+}
+</script>

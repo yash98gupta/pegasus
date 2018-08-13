@@ -1,0 +1,10 @@
+<%@receipts.each do |r|%>
+<%=User.find_by(id: r.student_id).first_name%><br>
+<%=User.find_by(id: r.student_id).last_name%><br>
+<%=Course.find_by(id: r.subject_id).subject_name%><br>
+<%=r.end_date%><br>
+<%=r.fees%><br>
+<%=r.emp_name%><br>
+<br>
+<br>
+<%end%>

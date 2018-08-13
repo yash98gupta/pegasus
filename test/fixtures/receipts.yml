@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 1
+  subject_id: 1
+  end_date: 2018-07-09
+  fees: 1
+  emp_name: MyString
+
+two:
+  student_id: 1
+  subject_id: 1
+  end_date: 2018-07-09
+  fees: 1
+  emp_name: MyString

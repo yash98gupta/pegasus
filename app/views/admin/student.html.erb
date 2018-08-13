@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <title>Dashboard</title>
+    <style>
+      .navbar_dashboard{
+        list-style: none;
+        display: flex;
+        margin-top: 0px;
+      }
+      .navbar_dashboard li
+      {
+        display: table;
+        height: 44px;
+      }
+
+      .navbar_outer{
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 5.5%;
+
+      }
+      .navbar_sidebar
+      {
+        background: linear-gradient(to top, #536976, #292e49);
+        height: 120vh;
+        width: 12vw;
+      }
+      .navbar_sidebar ul li:hover {
+        background: linear-gradient(to right, #f2994a, #f2c94c);
+      }
+      .navbar_sidebar ul li a:hover {
+        text-decoration: none;
+      }
+      .navbar_menu{
+        color: white;
+        position: fixed;
+        text-decoration: none;
+        width: 12%;
+        text-align: center;
+      }
+      .hover_li:hover{
+        background: white;
+        border-radius:40%;
+      }
+      .constant{
+        background: white;
+        border-radius:40%;
+      }
+      .all_students{
+        background: #d4d4d4;
+        width: 50%;
+        display: inline-block;
+        top: 8vh;
+        position: absolute;
+        left: 23vh;
+      }
+      .all_students li:hover{
+        background: white;
+      }
+    </style>
+  </head>
+  <body style="margin-left:0px">
+
+<div class="navbar_outer" style="position:fixed">
+      <ul class="navbar_dashboard">
+        <li>
+          <img style="height:40px;display:table-cell;margin-left:-12px;vertical-align:middle" src="/assets/pegasus-ogo.png">
+        </li>
+        <li style="margin-left:25px;">
+          <h3 style="display:table-cell;vertical-align:middle;">Pegasus</h3>
+        </li>
+        <li style="margin-left:25px;">
+          <%=link_to "Admin",root_path,style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+        <li style="margin-left:25px;">
+          <%=link_to "Home",root_path,style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+      <%if @student.standard==8%>
+        <li style="margin-left:145px;" class="hover_li constant">
+      <%else%>
+          <li style="margin-left:145px;" class="hover_li">
+      <%end%>
+          <%=link_to "CLASS VIII",admin_common_path(standard: '8'),style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+        <%if @student.standard==9%>
+          <li style="margin-left:25px;" class="hover_li constant">
+        <%else%>
+            <li style="margin-left:25px;" class="hover_li">
+        <%end%>
+          <%=link_to "CLASS IX",admin_common_path(standard: '9'),style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+        <%if @student.standard==10%>
+          <li style="margin-left:25px;" class="hover_li constant">
+        <%else%>
+            <li style="margin-left:25px;" class="hover_li">
+        <%end%>
+          <%=link_to "CLASS X",admin_common_path(standard: '10'),style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+        <%if @student.standard==11%>
+          <li style="margin-left:25px;" class="hover_li constant">
+        <%else%>
+            <li style="margin-left:25px;" class="hover_li">
+        <%end%>
+          <%=link_to "CLASS XI",admin_common_path(standard: '11'),style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+        <%if @student.standard=='12'%>
+          <li style="margin-left:25px;" class="hover_li constant">
+        <%else%>
+            <li style="margin-left:25px;" class="hover_li">
+        <%end%>
+          <%=link_to "CLASS XII",admin_common_path(standard: '12'),style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+
+        <li style="right:105px;position:fixed;">
+          <img style="height:40px;display:table-cell;margin-left:-12px;vertical-align:middle;border-radius:50%;" src="/assets/myprofile.jpg">
+        </li>
+
+        <li style="right:27px;position:fixed;">
+          <%=link_to "Logout",destroy_user_session_path,:method => :delete,style:"color:black;text-decoration:none;margin-top:0px;vertical-align:middle; display:table-cell"%>
+        </li>
+      </ul>
+    </div>
+
+
+        <div class="navbar_sidebar" style="display:inline-block;position:fixed;margin-top:37px;">
+      <ul style="list-style:none;padding:0px;">
+        <li style=" top:5.5vh;position: fixed;height: 66px;width: 12%;">
+          <%=link_to "Leaderboard",admin_leaderboard_path(:standard=>@student.standard),style: "top: 8vh;",class: "navbar_menu"%>
+        </li>
+        <li style=" top:13.5vh;position: fixed;height: 66px;width: 12%;">
+          <!-- <a class="navbar_menu"href="#" style="top: 16.5vh;">Class Schedule</a> -->
+          <%=link_to "Class Schedule",timetable_timetable_new_path(standard: @student.standard),class: "navbar_menu",style: "top: 16.5vh;"%>
+        </li>
+        <li style=" top:21.5vh;position: fixed;height: 66px;width: 12%;">
+          <!-- <a class="navbar_menu"href="/notes/study_material_new" style="top: 25vh;">Study Material</a> -->
+          <%=link_to "Study Material",admin_choose_subjects_path(standard: @student.standard,path:1),class: "navbar_menu",style: "top: 25vh;"%>
+        </li>
+        <li style=" top:29.5vh;position: fixed;height: 66px;width: 12%;">
+          <a class="navbar_menu"href="#" style="top: 33vh;">NCERT solutions</a>
+          <%=link_to "NCERT solutions",admin_choose_subjects_path(standard: @student.standard,path:5),class: "navbar_menu",style: "top: 33vh;"%>
+        </li>
+        <li style=" top:37.5vh;position: fixed;height: 66px;width: 12%;">
+          <!-- <a class="navbar_menu"href="#" style="top: 49vh;">Tests</a> -->
+          <%=link_to "Tests",admin_choose_subjects_path(standard: @student.standard, path:2),class: "navbar_menu",style: "top: 40.5vh;"%>
+        </li>
+        <li style=" top:45.5vh;position: fixed;height: 66px;width: 12%;">
+          <!-- <a class="navbar_menu"href="#" style="top: 56.5vh;">Assignments</a> -->
+          <%=link_to "Assignments",admin_choose_subjects_path(standard: @student.standard, path:3),class: "navbar_menu",style: "top: 49vh;"%>
+        </li>
+        <li style=" top:53.5vh;position: fixed;height: 66px;width: 12%;">
+          <!-- <a class="navbar_menu"href="#" style="top: 65vh;">Videos</a> -->
+          <%=link_to "Videos",admin_choose_subjects_path(standard: @student.standard, path:4),class: "navbar_menu",style: "top: 56.5vh;"%>
+        </li>
+        <li style=" top:61.5vh;position: fixed;height: 66px;width: 12%;">
+          <%=link_to "Doubts",admin_choose_subjects_path(standard: @student.standard, path:6),class: "navbar_menu",style: "top: 65vh;"%>
+        </li>
+        <li style=" top:69.5vh;position: fixed;height: 66px;width: 12%;">
+          <a class="navbar_menu"href="/courses/subject" style="top: 72vh;">Add Subject</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="all_students" style=" position: absolute;z-index: -1;">
+      <ul style="list-style:none;padding:0px;margin-top:15px;">
+          <li style="padding-left:23px;"><%=link_to @student.first_name,student_profile_admin_path(@student.id), style: "text-decoration:none;color:black;"%><li>
+          <li style="padding-left:23px;"><%=@student.last_name%><li>
+            <li style="padding-left:23px;"><%=@student.email%><li>
+          <li style="padding-left:23px;"><%=@student.age%><li>
+          <li style="padding-left:23px;"><%=@student.phone%><li>
+          <li style="padding-left:23px;"><%=@student.school%><li>
+
+              <br>
+              <%if @student_subjects.length !=0%>
+              <%@student_subjects.each do |s|%>
+                <li style="padding-left:23px;">
+                  <%=Course.find_by(id: s.course_id).subject_name%>
+                  <span style="position: absolute;left:6vw;"><%=s.end_date%></span>
+                  <span style="position:absolute;left:13vw"><%=link_to "Renew",edit_subject_path(:id=>s.id,:standard=> @student.standard,:student_id => s.student_id)%></span>
+                  <span style="position:absolute;left:17vw"><%=link_to "Receipt",receipt_subject_path(:student_id =>s.student_id,:subject_id=> s.course_id)%></span>
+                  <span style="position:absolute;left:22vw"><%=link_to "Remove",delete_subject_path(s.id),:method => 'delete'%></span>
+                  <span style="position:absolute;left:27vw"><%=link_to "Upload Test Result",upload_test_result_path(:student_id => @student.id,:course_id => s.course_id)%></li>
+                </li>
+                <br>
+              <%end%>
+              <%end%>
+              <br>
+          <li style="padding-left:23px;"><%=link_to "Add Subject",add_subject_path(:id => @student.id,:standard => @student.standard)%></li>
+      </ul>
+    </div>
+
+  </body>
+</html>

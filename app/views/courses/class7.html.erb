@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <title></title>
+    <style>
+    @media only screen and (max-width: 400px) {
+      .test_ul
+      {
+        display:inline-block;list-style: none; width:100%; margin-top:10px
+      }
+      .section-1
+      {
+            background: linear-gradient(to right, #9d50bb, #6e48aa);
+        height:18vh;
+        width:100%;
+      }
+      .class_standard
+      {
+        background-color: white;
+        border-radius: 50%;
+        width: 15vh;
+        height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        top: 10%;
+        left: 34%;
+      }
+      .overview_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 28%;
+      }
+      .overview_bar h2
+      {
+        font-size: 18px;
+      }
+      .overview_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+
+      }
+      .class_write
+      {
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        left: -3%;
+        top: 1vh;
+      }
+      .class_desc{
+        display: none;
+      }
+      .logged_in_user
+      {
+        top: -12.5vh;
+        position: relative;
+        padding: 0px;
+        list-style: none;
+        width: 100vw;
+
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .logged_in_cuser
+      {
+        top: -12.5vh;
+        position: relative;
+        padding: 0px;
+        list-style: none;
+        width: 100vw;
+
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .logged_in_user li a
+      {
+        font-size: 8px;
+        position: relative;
+        top: 1vh;
+      }
+      .logged_in_cuser li a
+      {
+        font-size: 8px;
+        position: relative;
+        top: 1vh;
+      }
+      .log_in_user
+      {
+        list-style:none; width:45%;margin-left:335px;display:flex;justify-content:space-evenly;
+      }
+      .space
+      {
+        display: none;
+      }
+      .intro_class p
+      {
+        font-size: 12px;
+        margin: 3%;
+      }
+      .cards_numbers{
+        display: inline-block;
+        height: 15vh;
+        width: 15vh;
+            background: linear-gradient(to left, #b993d6, #8ca6db);        box-shadow: 0px 3px 18px 6px;
+        margin: 1.5px;
+        margin-top: 3vh;
+      }
+      .cards_js_numbers{
+      color: white;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 9px;
+      }
+      .count_up
+      {
+        text-align: center;
+        color: white;
+        margin-top: -1vh;
+        font-size: 23px;
+      }
+      .testimonial_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+      }
+      .testimonial_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 23%;
+      }
+      .testimonial_bar h2
+      {
+        font-size: 18px;
+      }
+      .links_color
+      {
+        color: black;
+
+      }
+
+    }
+    @media only screen and (min-width: 401px) and (max-width: 991px) {
+      .test_ul
+      {
+        display:inline-block;list-style: none; width:100%; margin-top:10px
+      }
+      .section-1
+      {
+            background: linear-gradient(to right, #9d50bb, #6e48aa);
+        height:18vh;
+        width:100%;
+      }
+      .class_standard
+      {
+        background-color: white;
+        border-radius: 50%;
+        width: 15vh;
+        height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        top: 10%;
+        left: 40vw;
+      }
+      .overview_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 36vw;
+      }
+      .overview_bar h2
+      {
+        font-size: 18px;
+      }
+      .overview_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+
+      }
+      .class_write
+      {
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        left: -3%;
+        top: 1vh;
+      }
+      .class_desc{
+        display: none;
+      }
+      .logged_in_user
+      {
+        top: -12.5vh;
+        position: relative;
+        padding: 0px;
+        list-style: none;
+        width: 100vw;
+
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .logged_in_cuser
+      {
+        top: -12.5vh;
+        position: relative;
+        padding: 0px;
+        list-style: none;
+        width: 100vw;
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .logged_in_user li a
+      {
+        font-size: 8px;
+        position: relative;
+        top: 1vh;
+      }
+      .logged_in_cuser li a
+      {
+        font-size: 8px;
+        position: relative;
+        top: 1vh;
+      }
+      .log_in_user
+      {
+        list-style:none; width:45%;margin-left:335px;display:flex;justify-content:space-evenly;
+      }
+      .space
+      {
+        display: none;
+      }
+      .intro_class p
+      {
+        font-size: 12px;
+        margin: 3%;
+      }
+      .cards_numbers{
+        display: inline-block;
+        height: 15vh;
+        width: 15vh;
+            background: linear-gradient(to left, #b993d6, #8ca6db);        box-shadow: 0px 3px 18px 6px;
+        margin: 1.5px;
+        margin-top: 3vh;
+      }
+      .cards_js_numbers{
+      color: white;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 9px;
+      }
+      .count_up
+      {
+        text-align: center;
+        color: white;
+        margin-top: -1vh;
+        font-size: 23px;
+      }
+      .testimonial_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+      }
+      .testimonial_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 36vw;
+      }
+      .testimonial_bar h2
+      {
+        font-size: 18px;
+      }
+      .figures{
+        margin-left: 25%;
+        margin-bottom: 5vh;
+      }
+      .testimonials{
+        display: inline-block;
+      }
+      .links_color
+      {
+        color: black;
+
+      }
+
+    }
+    @media only screen and (min-width: 992px){
+
+      .figures{
+          height: 75vh;
+      }
+
+      .class_write{
+        font-size: 20px;
+      }
+
+      .links_class
+      {
+        display: inline-block;
+        margin: -5px;
+      }
+      .links_color
+      {
+        color: black;
+
+      }
+      .cards{
+      display: inline-block;
+      }
+      .cards_within
+      {
+      display:flex;
+      margin-top: 40px;
+      margin-left: 70px;
+      justify-content: space-evenly;
+      }
+      .cards_numbers{
+      display: inline-block;
+      height: 30vh;
+      width: 30vh;
+          background: linear-gradient(to left, #b993d6, #8ca6db);      box-shadow: 0px 3px 18px 6px;
+      margin: 46px;
+      }
+      .cards_js_numbers{
+      color: white;
+      display: flex;
+      justify-content: space-evenly;
+      }
+      .count_up
+      {
+      text-align: center;
+      color: white;
+      margin-top: 50px;
+      font-size: 40px;
+      }
+      .testimonials{
+      display: inline-block;
+      height: 280px;
+      width: 280px;
+      background-color: #b6c9da;
+      margin: 10px;
+      }
+      .video-testimonials
+      {
+        text-align: center;
+      }
+      .section-1
+      {
+            background: linear-gradient(to right, #9d50bb, #6e48aa);
+        height:30vh;
+        width:100%;
+      }
+      .class_desc
+      {
+        text-align: center;
+        margin-left: -30px;
+      }
+      .logged_in_user
+      {
+        list-style:none; width:50vw;margin-left:300px;display:flex;justify-content:space-evenly;
+      }
+      .logged_in_cuser
+      {
+        list-style:none; width:50vw;margin-left:250px;display:flex;justify-content:space-evenly;
+      }
+      .log_in_user
+      {
+        list-style:none; width:50vw;margin-left:335px;display:flex;justify-content:space-evenly;
+      }
+      .intro_class
+      {
+        margin-left: 230px;margin-right: 230px;margin-top: 26px;
+      }
+      .card_1
+      {
+        margin-left:27%;
+      }
+      .card_2
+      {
+
+      }
+      .card_3{
+        left: 37%;
+           position: absolute;
+           top: 95.5vh;
+           margin-bottom: 25px;
+           margin-top: 10px;
+
+      }
+      .testi_videos
+      {
+margin-left: 10%;
+margin-right: 10%;
+margin-top: 160px;
+margin-bottom: 40px;
+      }
+      .testimonial_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+        margin-top: 12vh;
+      }
+      .testimonial_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 43vw;
+      }
+      .testimonial_bar h2
+      {
+        font-size: 18px;
+      }
+      .overview_bar img
+      {
+        height: 55px;
+        display: inline-block;
+        margin-left: 43vw;
+      }
+      .overview_bar h2
+      {
+        font-size: 18px;
+      }
+      .overview_bar
+      {
+        background-color: #262626;
+        opacity: 0.95;
+        height: 55px;
+
+      }
+      .class_standard
+      {
+        background-color: white;
+        border-radius: 50%;
+        width: 15vh;
+        height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        top: 10%;
+        left: 45%;
+      }
+      .space{
+        display: none;
+      }
+      .test_ul
+      {
+        display: inline-block;
+list-style: none;
+width: 100%;
+position: relative;
+margin-top: -10vh;
+      }
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="section-1">
+    <div class="class_standard">
+      <h3 style="position: relative;top: 31px;">VII</h3>
+      <br>
+      <h2 class="class_write">Class 7</h2>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h6 class="class_desc">LEARNERS</h6>
+    <!-- <br>
+    <%if current_user && current_user.standard ==8%>
+    <ul class="log_in_user">
+      <%else%>
+      <%if current_user%>
+    <ul class="logged_in_cuser">
+      <%else%>
+    <ul class="logged_in_user">
+      <%end%>
+      <%end%>
+      <%if current_user == nil%>
+      <li class="links_class"><%=link_to "REGISTER",new_user_registration_path,class: "links_color"%></li>
+      <%elsif current_user.standard == 8 %>
+        <li class="links_class"><%=link_to "REGISTER",add_subject_path(:id => current_user.id,:standard => 8),class: "links_color"%></li>
+      <%else%>
+        <li></li>
+      <%end%>
+
+      <li class="links_class"><%=link_to "CURRICULUM",root_path,class: "links_color"%></li>
+      <li class="links_class"><%=link_to "TESTIMONIALS",root_path,class: "links_color"%> </li>
+      <li class="links_class"><%=link_to "FAQS",root_path,class: "links_color"%></li>
+    </ul> -->
+    </div>
+
+    <div class="overview_bar">
+      <img src="/assets/gif.gif">
+      <h2 style="color:white; display:inline-block;vertical-align: middle;">Overview</h2>
+    </div>
+
+    <div class="intro_class">
+      <p style="color: #5f5c5c;">
+         <b>The goal of the Learner Course :</b> This Course is to transform you into a avid Learner.
+         This course is focused entirely on equipping you with skills and knowledge.<span class="space"><br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+         If you're interested in learning , communicating , gaining valuable career skills and building strong foundation this course is for you.
+         <br>
+         <b>
+         <ul style="color: #5f5c5c;">
+           <li>Classes available for all subjects.</li>
+           <li>Classes are held for a duration of 2 hours for 5 days in a week.</li>
+         </ul>
+       </b>
+     </p>
+   </div>
+   <div class="figures">
+   <div class="cards_numbers card_1"><p class="cards_js_numbers"><br>NUMBER OF LECTURES</p><h2 class="count_up">20</h2></div>
+   <div class="cards_numbers card_2"><p class="cards_js_numbers"><br>ASSIGNMENTS</p><h2 class="count_up">15</h2></div>
+   <div class="cards_numbers card_3"><p class="cards_js_numbers"><br>STUDENT : MENTOR</p><h2 class="count_up">10:1</h2></div>
+ </div>
+
+   <!-- <br>
+   <br>
+   <div class="testimonial_bar">
+     <img src="/assets/gif.gif">
+     <h2 style="color:white; display:inline-block;vertical-align: middle;">Testimonials</h2>
+   </div>
+
+   <div class="testi_videos">
+     <ul class="test_ul">
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+       <li class="testimonials">
+         <div><p class="video-testimonials"><iframe width="280" height="280"src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"></iframe></p></div>
+       </li>
+
+     </ul>
+   </div> -->
+
+  </body>
+</html>
