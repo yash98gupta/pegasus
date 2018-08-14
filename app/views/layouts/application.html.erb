@@ -50,6 +50,15 @@
     bottom: 0px;
     width: 100%;
   }
+  .least{
+    right: 35px;
+    position: absolute;
+  }
+  .hide_refer
+  {
+    display: none;
+  }
+
 
 }
 
@@ -96,6 +105,14 @@
     width: 26%;
     color: #f6deb3;
     font-size: 8px;
+  }
+  .least{
+    right: 25px;
+    position: absolute;
+  }
+  .hide_refer
+  {
+    display: none;
   }
 }
 
@@ -159,11 +176,11 @@
             <%=link_to "Logout",destroy_user_session_path,method:"delete",class: "nav-link disabled"%>
             </li>
           <% else %>
-          <li class="nav-item active" style="position:absolute;right: 16%;background:linear-gradient(to top, #ddd6f3, #faaca8);border-radius:50%;">
+          <li class="nav-item active hide_refer" style="position:absolute;right: 16%;background:linear-gradient(to top, #ddd6f3, #faaca8);border-radius:50%;">
             <a style=" width: 113px" class="nav-link" href="#">Refer & Earn</a>
           </li>
             <li class="nav-item active" style="position:absolute;right: 9%" >
-              <%=link_to "Login",user_session_path,class:"nav-link disabled"%>
+              <%=link_to "Login",user_session_path,class:"nav-link disabled least"%>
             </li>
             <li class="nav-item active" style="position:absolute;right: 3%">
               <%=link_to "Join",new_user_registration_path,class: "nav-link disabled"%>

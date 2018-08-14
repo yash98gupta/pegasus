@@ -103,12 +103,12 @@
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" , :required => true %>
       </div>
 
       <div class="field">
         <%= f.label :first_name %><br />
-        <%= f.text_field :first_name, autofocus: true%>
+        <%= f.text_field :first_name, autofocus: true, :required => true%>
       </div>
 
       <div class="field">
@@ -123,17 +123,17 @@
 
           <div class="field">
             <%= f.label :standard %><br />
-            <%= f.number_field :standard, class: :text_field, step: :any%>
+            <%= f.number_field :standard, class: :text_field, step: :any, :required => true%>
           </div>
 
           <div class="field">
             <%= f.label :age %><br />
-            <%= f.number_field :age, class: :text_field, step: :any%>
+            <%= f.number_field :age, class: :text_field, step: :any, :required => true%>
           </div>
 
           <div class="field">
             <%= f.label :phone %><br />
-            <%= f.phone_field :phone, class: :text_field, step: :any%>
+            <%= f.phone_field :phone, class: :text_field, step: :any, :required => true%>
           </div>
 
       <div class="field">
