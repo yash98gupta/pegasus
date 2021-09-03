@@ -2,6 +2,8 @@
 
 Pegasus is an online educational coaching platform assisting middle and high school students with their academic journey. 
 
+Demo: https://drive.google.com/file/d/1ZRU1l9YGh_UXSo58AAvYTTZUALFVjXO0/view?usp=sharing
+
 * Ruby version: 2.5.1
 * Rails version: 5.2.0
 * Database creation: SQLite database
